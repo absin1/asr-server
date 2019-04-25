@@ -163,13 +163,17 @@ Then you have to add to Apache2 configuration file following line:
 	ProxyPass "/asr" "fcgi://localhost:8000/"
 
 Now, because we are also serving some static files and a web interface, let's create an alias:
-	 sudo vi /etc/apache2/mods-enabled/alias.conf
-	 Alias /asr-html "/home/absin/Documents/dev/apiai/asr-server/asr-html"
-        	<Directory "/home/absin/Documents/dev/apiai/asr-server/asr-html">
-			Options Indexes MultiViews
-			AllowOverride None
-			Require all granted
-        	</Directory>
+	 
+	sudo vi /etc/apache2/mods-enabled/alias.conf
+	
+	Alias /asr-html "/home/absin/Documents/dev/apiai/asr-server/asr-html"
+	<Directory "/home/absin/Documents/dev/apiai/asr-server/asr-html">
+		Options Indexes MultiViews
+		AllowOverride None
+		Require all granted
+	</Directory>
+		
+		
 But the static require mic access so better enable ssl:
 	
 	openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout example.key -out example.crt -extensions san -config <(echo "[req]"; echo distinguished_name=req; echo "[san]"; echo subjectAltName=DNS:example.com,DNS:example.net,IP:0.0.0.0) -subj /CN=example.com
