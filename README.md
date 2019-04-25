@@ -379,3 +379,8 @@ Content-type: application/json
 		<td>false</td>
 	</tr>
 </table>
+
+## References
+
+* https://stackoverflow.com/questions/4221874/how-do-i-allow-https-for-apache-on-localhost
+* https://stackoverflow.com/questions/10175812/how-to-create-a-self-signed-certificate-with-openssl
